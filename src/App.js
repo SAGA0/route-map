@@ -1,11 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+import { Main } from './components'
+
 
 function App() {
     return (
-        <div className="App">
-            EHO
-        </div>
+        <Main />
     );
 }
 
