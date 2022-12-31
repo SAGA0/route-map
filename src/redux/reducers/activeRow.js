@@ -1,7 +1,8 @@
-import { SET_ACTIVE_ROW } from '../constants'
+import { GET_ACTIVE_ROUTE, SET_ACTIVE_ROW } from '../constants'
 
 const initialState = {
-	activeR: {},
+	activeID: {},
+	activeRoute: [],
 }
 
 const activeRow = (state = initialState, action) => {
@@ -9,7 +10,12 @@ const activeRow = (state = initialState, action) => {
 		case SET_ACTIVE_ROW:
 			return {
 				...state,
-				activeR: action.payload,
+				activeID: action.payload,
+			}
+		case GET_ACTIVE_ROUTE:
+			return {
+				...state,
+				activeRoute: action.payload,
 			}
 		default:
 			return state

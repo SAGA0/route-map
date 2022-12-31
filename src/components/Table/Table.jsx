@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Table as ATable } from 'antd'
 import styles from './index.module.scss'
 import { columns, data } from './config'
-import { setActiveRow } from '../../redux/actions'
+import { setActiveRow, getActiveRoute } from '../../redux/actions'
 
 const Table = () => {
-	const { activeR } = useSelector((state) => state?.activeRow)
+	const { activeID } = useSelector((state) => state?.activeRow)
 	const dispatch = useDispatch()
 
 	const handleRowClick = (record, index) => {
+		dispatch(getActiveRoute(record))
 		dispatch(setActiveRow(index))
 	}
 
@@ -21,7 +22,7 @@ const Table = () => {
 		<>
 			<ATable
 				className={styles.table}
-				rowClassName={(_, index) => (index === activeR ? styles.active : '')}
+				rowClassName={(_, index) => (index === activeID ? styles.active : '')}
 				onRow={handleRow}
 				columns={columns}
 				dataSource={data}
