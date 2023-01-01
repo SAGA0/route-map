@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Table, Map } from '../'
 import SplitPane, { Pane } from 'split-pane-react'
 import styles from './index.module.scss'
@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setCurrentRecord } from '../../redux/actions'
 
 const Main = () => {
-	const [sizes, setSizes] = useState(['50%', '50%'])
+	const [sizes, setSizes] = useState(['40%', '60%'])
 	const currentRecord = useSelector(
 		(state) => state?.activeRecord.currentRecord,
 	)

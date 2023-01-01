@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useMemo, memo } from 'react'
-import { Typography, Divider } from 'antd'
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect, memo } from 'react'
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import Routing from './Routing'
 import 'leaflet/dist/leaflet.css'
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.css'
 
 import L from 'leaflet'
 
@@ -34,33 +33,26 @@ const Lmap = memo(({ currentRecord }) => {
 	}, [currentRecord])
 
 	return (
-		<div className={styles.container}>
-			<MapContainer
-				key={[51.505, -0.09]}
-				center={[51.505, -0.09]}
-				zoom={8}
-				// style={{ height: '100%' }}
-				className={styles.map}
-			>
-				<TileLayer
-					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-					attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-				/>
-				{markers?.map((m) => (
-					<React.Fragment key={m?.id}>
-						<Marker position={m?.position} />
-					</React.Fragment>
-				))}
+		<MapContainer
+			key={[59.84660399, 30.29496392]}
+			center={[59.84660399, 30.29496392]}
+			zoom={13}
+			className={styles.map}
+		>
+			<TileLayer
+				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+				attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+			/>
+			{markers?.map((m) => (
+				<React.Fragment key={m?.id}>
+					<Marker position={m?.position} />
+				</React.Fragment>
+			))}
 
-				{currentRecord && Object.keys(currentRecord)?.length ? (
-					<Routing
-						markers={markers}
-						from={currentRecord?.from}
-						to={currentRecord?.to}
-					/>
-				) : null}
-			</MapContainer>
-		</div>
+			{currentRecord && Object.keys(currentRecord)?.length ? (
+				<Routing from={currentRecord?.from} to={currentRecord?.to} />
+			) : null}
+		</MapContainer>
 	)
 })
 

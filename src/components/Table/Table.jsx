@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
 import { Table as ATable } from 'antd'
 import styles from './index.module.scss'
 import { columns, data } from './config'
