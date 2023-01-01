@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import activeRow from './activeRow'
+import activeRecord from './activeRecord'
 
 const reducer = combineReducers({
-	activeRow,
+	activeRecord,
 })
 
 export default reducer

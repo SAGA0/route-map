@@ -28,7 +28,7 @@ const columns = [
 
 const data = [
 	{
-		key: '1',
+		key: 1,
 		ID: '№1',
 		fromLat: 59.84660399,
 		fromLng: 30.29496392,
@@ -36,7 +36,7 @@ const data = [
 		toLng: 30.42423701,
 	},
 	{
-		key: '2',
+		key: 2,
 		ID: '№2',
 		fromLat: 59.82934196,
 		fromLng: 30.42423701,
@@ -44,7 +44,7 @@ const data = [
 		toLng: 30.41705607,
 	},
 	{
-		key: '3',
+		key: 3,
 		ID: '№3',
 		fromLat: 59.83567701,
 		fromLng: 30.38064206,
@@ -52,7 +52,7 @@ const data = [
 		toLng: 30.29496392,
 	},
 	{
-		key: '4',
+		key: 4,
 		ID: '№4',
 		fromLat: 59.84660399,
 		fromLng: 30.29496392,
@@ -60,7 +60,7 @@ const data = [
 		toLng: 30.41705607,
 	},
 	{
-		key: '5',
+		key: 5,
 		ID: '№5',
 		fromLat: 59.83567701,
 		fromLng: 30.38064206,
