@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import activeRecord from './activeRecord'
+import activeRecordReducer from './activeRecord'
 
 const reducer = combineReducers({
-	activeRecord,
+	activeRecord: activeRecordReducer,
 })
 
 export default reducer

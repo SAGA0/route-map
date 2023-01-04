@@ -3,7 +3,7 @@ import { Table, Map } from '../'
 import SplitPane, { Pane } from 'split-pane-react'
 import styles from './index.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import { setCurrentRecord } from '../../redux/actions'
+import { setCurrentRecordRoutine } from '../../redux/actions'
 
 const Main = () => {
 	const [sizes, setSizes] = useState(['40%', '60%'])
@@ -14,7 +14,8 @@ const Main = () => {
 	const dispatch = useDispatch()
 
 	const handleActiveRow = (record) => {
-		dispatch(setCurrentRecord(record))
+		// dispatch(setCurrentRecord(record))
+		dispatch(setCurrentRecordRoutine(record))
 	}
 
 	return (

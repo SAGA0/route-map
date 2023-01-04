@@ -2,8 +2,6 @@ import { useEffect } from 'react'
 import { useMap } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet-routing-machine'
-import 'leaflet-routing-machine/dist/leaflet-routing-machine.css'
-import 'leaflet/dist/leaflet.css'
 
 const Routing = ({ from, to }) => {
 	const map = useMap()
@@ -31,8 +29,6 @@ const Routing = ({ from, to }) => {
 		if (from && to) {
 			map.setView(to, 8)
 		}
-
-		console.log('Call')
 
 		return () => map.removeControl(routingControl)
 	}, [map, from, to])

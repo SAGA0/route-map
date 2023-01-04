@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from '@redux-saga/core'
 import reducer from './reducers/index'
-// import rootSaga from './sagas'
+import { setCurrentRecordWatcher } from './sagas'
 
-// const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware()
 
 const composeEnhancers =
 	typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -11,10 +11,14 @@ const composeEnhancers =
 		: compose
 
 const configureStore = (preloadedState) =>
-	createStore(reducer, preloadedState, composeEnhancers(applyMiddleware()))
+	createStore(
+		reducer,
+		preloadedState,
+		composeEnhancers(applyMiddleware(sagaMiddleware)),
+	)
 
 const store = configureStore({})
 
-// sagaMiddleware.run(rootSaga)
+sagaMiddleware.run(setCurrentRecordWatcher)
 
 export default store

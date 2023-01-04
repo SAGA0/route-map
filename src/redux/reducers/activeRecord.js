@@ -1,24 +1,26 @@
-import { SET_CURRENT_RECORD } from '../constants'
+import { createReducer } from '@reduxjs/toolkit'
+import { setCurrentRecordRoutine } from '../actions'
 
 const initialState = {
 	currentRecord: null,
+	error: null,
 }
 
-const activeRecord = (state = initialState, action) => {
-	switch (action.type) {
-		case SET_CURRENT_RECORD:
-			return {
-				...state,
-				currentRecord: {
-					...action.payload,
-					from: [action.payload.fromLat, action.payload.fromLng],
-					to: [action.payload.toLat, action.payload.toLng],
-				},
-			}
+const activeRecordReducer = createReducer(initialState, {
+	[setCurrentRecordRoutine.SUCCESS]: (state, action) => {
+		const { data } = action.payload
 
-		default:
-			return state
-	}
-}
+		state.currentRecord = {
+			...data,
+			from: [data.fromLat, data.fromLng],
+			to: [data.toLat, data.toLng],
+		}
+	},
+	[setCurrentRecordRoutine.FAILURE]: (state, action) => {
+		const { error } = action.payload
 
-export default activeRecord
+		state.error = error
+	},
+})
+
+export default activeRecordReducer

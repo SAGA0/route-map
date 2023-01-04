@@ -1,14 +1,15 @@
-import React, { useState, useEffect, memo } from 'react'
+import React, { useState, useEffect } from 'react'
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
-import Routing from './Routing'
+
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css'
+import 'leaflet-routing-machine'
 
 import L from 'leaflet'
-
 import Img1 from 'leaflet/dist/images/marker-icon-2x.png'
 import Img2 from 'leaflet/dist/images/marker-icon.png'
 import Img3 from 'leaflet/dist/images/marker-shadow.png'
+import Routing from './Routing'
 
 import styles from './index.module.scss'
 
@@ -20,7 +21,11 @@ L.Icon.Default.mergeOptions({
 	shadowUrl: Img3,
 })
 
-const Lmap = memo(({ currentRecord }) => {
+setTimeout(function () {
+	window.dispatchEvent(new Event('resize'))
+}, 500)
+
+const Lmap = ({ currentRecord }) => {
 	const [markers, setMarkers] = useState([])
 
 	useEffect(() => {
@@ -54,6 +59,6 @@ const Lmap = memo(({ currentRecord }) => {
 			) : null}
 		</MapContainer>
 	)
-})
+}
 
 export default Lmap
