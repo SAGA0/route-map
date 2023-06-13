@@ -1,45 +1,19 @@
-import React, { useState } from 'react'
-import { Table, Map } from '../'
-import SplitPane, { Pane } from 'split-pane-react'
-import styles from './index.module.scss'
-import { useSelector, useDispatch } from 'react-redux'
-import { setCurrentRecordRoutine } from '../../redux/actions'
+// @ts-nocheck
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Login from '../Login/Login'
+import MainPage from '../MainPage/MainPage'
 
 const Main = () => {
-	const [sizes, setSizes] = useState(['40%', '60%'])
-	const currentRecord = useSelector(
-		(state) => state?.activeRecord.currentRecord,
-	)
 
-	const dispatch = useDispatch()
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="menu" element={<MainPage />} />
+            </Routes>
+        </BrowserRouter>
+    )
 
-	const handleActiveRow = (record) => {
-		// dispatch(setCurrentRecord(record))
-		dispatch(setCurrentRecordRoutine(record))
-	}
-
-	return (
-		<div className={styles.main}>
-			<SplitPane
-				split="vertical"
-				sizes={sizes}
-				onChange={setSizes}
-				className={styles.splitter}
-			>
-				<Pane className={styles.pane}>
-					<div className={styles['table-container']}>
-						<Table
-							handleActiveRow={handleActiveRow}
-							activeRowID={currentRecord?.key}
-						/>
-					</div>
-				</Pane>
-				<Pane className={styles.pane}>
-					<Map currentRecord={currentRecord} />
-				</Pane>
-			</SplitPane>
-		</div>
-	)
 }
 
 export default Main

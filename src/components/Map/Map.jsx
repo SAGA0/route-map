@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect } from 'react'
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 
@@ -16,49 +17,49 @@ import styles from './index.module.scss'
 delete L.Icon.Default.prototype._getIconUrl
 
 L.Icon.Default.mergeOptions({
-	iconRetinaUrl: Img1,
-	iconUrl: Img2,
-	shadowUrl: Img3,
+    iconRetinaUrl: Img1,
+    iconUrl: Img2,
+    shadowUrl: Img3,
 })
 
 setTimeout(function () {
-	window.dispatchEvent(new Event('resize'))
+    window.dispatchEvent(new Event('resize'))
 }, 500)
 
 const Lmap = ({ currentRecord }) => {
-	const [markers, setMarkers] = useState([])
+    const [markers, setMarkers] = useState([])
 
-	useEffect(() => {
-		if (currentRecord && Object.values(currentRecord)?.length !== 0) {
-			setMarkers([
-				{ id: 1, position: currentRecord?.from },
-				{ id: 2, position: currentRecord?.to },
-			])
-		}
-	}, [currentRecord])
+    useEffect(() => {
+        if (currentRecord && Object.values(currentRecord)?.length !== 0) {
+            setMarkers([
+                { id: 1, position: currentRecord?.from },
+                { id: 2, position: currentRecord?.to },
+            ])
+        }
+    }, [currentRecord])
 
-	return (
-		<MapContainer
-			key={[59.84660399, 30.29496392]}
-			center={[59.84660399, 30.29496392]}
-			zoom={13}
-			className={styles.map}
-		>
-			<TileLayer
-				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-				attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-			/>
-			{markers?.map((m) => (
-				<React.Fragment key={m?.id}>
-					<Marker position={m?.position} />
-				</React.Fragment>
-			))}
+    return (
+        <MapContainer
+            key={[59.84660399, 30.29496392]}
+            center={[59.84660399, 30.29496392]}
+            zoom={13}
+            className={styles.map}
+        >
+            <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            />
+            {markers?.map((m) => (
+                <React.Fragment key={m?.id}>
+                    <Marker position={m?.position} />
+                </React.Fragment>
+            ))}
 
-			{currentRecord && Object.keys(currentRecord)?.length ? (
-				<Routing from={currentRecord?.from} to={currentRecord?.to} />
-			) : null}
-		</MapContainer>
-	)
+            {currentRecord && Object.keys(currentRecord)?.length ? (
+                <Routing from={currentRecord?.from} to={currentRecord?.to} />
+            ) : null}
+        </MapContainer>
+    )
 }
 
 export default Lmap
